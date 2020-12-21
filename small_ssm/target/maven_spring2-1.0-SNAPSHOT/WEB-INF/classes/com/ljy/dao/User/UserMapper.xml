@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ljy.dao.User.UserMapper">
+    <resultMap id="userList" type="com.ljy.model.User">
+        <result property="userId" column="id"></result>
+        <result property="id" column="id"></result>
+        <result property="userRoleName" column="roleName"></result>
+    </resultMap>
+    <!-- 根据id获取用户信息 -->
+    <select id="getAll"  resultType="com.ljy.model.User">
+        select * from user
+    </select>
+
+    <select id="getOneUserInfo" resultType="com.ljy.model.User" >
+        select * from user where id = #{id} #
+    </select>
+    
+    <select id="getUserForName" resultType="com.ljy.model.User">
+        select * from user where userName like  CONCAT('%', #{name}, '%')
+    </select>
+
+    <!-- 多参数查询1   -->
+<!--    <select id="getUserForNameAndId" resultType="com.ljy.model.User" parameterType="com.ljy.model.User">-->
+<!--         select * from user where userName like  CONCAT('%', #{userName}, '%') and id = #{id}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash; 多参数查询2   &ndash;&gt;-->
+<!--    <select id="getUserForNameAndIdMap" parameterType="map" resultType="com.ljy.model.User">-->
+<!--        select * from user where userName like  CONCAT('%', #{userName}, '%') and id = #{id}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash; 自定义返回map   &ndash;&gt;-->
+<!--    <select id="getUserMapForName" resultMap="userList">-->
+<!--        select u.*, r.roleName from user u inner join role r on u.roleId = r.id-->
+<!--    </select>-->
+</mapper>
